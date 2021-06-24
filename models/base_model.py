@@ -31,7 +31,7 @@ class BaseModel():
         return ("[{}] ({}) {}".format(type(self).__name__, self.id,
                                       self.__dict__))
 
-    def to_dictionary(self):
+    def to_dict(self):
         '''give dictionary representation of instance attributes'''
         new_dict = {}
         for key, value in self.__dict__.items():
