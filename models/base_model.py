@@ -24,7 +24,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = the_time.now()
             self.updated_at = self.created_at
-            ''' models.storage.new(self)'''
+            models.storage.new(self)
 
     def __str__(self):
         '''string rep of basemodel instance'''
@@ -41,3 +41,8 @@ class BaseModel():
                 new_dict[key] = value
         new_dict['__class__'] = type(self).__name__
         return new_dict
+
+    def save(self):
+        '''saves and updates'''
+        self.updated_at = the_time.now()
+        models.storage.save()
