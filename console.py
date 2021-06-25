@@ -3,6 +3,8 @@
 Entry point of the command interpreter
 """
 import cmd
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -25,6 +27,40 @@ class HBNBCommand(cmd.Cmd):
         instead of the last line
         """
         return
+
+    def do_create(self, arg):
+        '''
+        Creates a new instance of BaseModel,
+        saves it, and print the id
+        '''
+        if not arg:
+            print('** class name missing **')
+            return
+        if arg != 'BaseModel':
+            print("** class doesn't exist **")
+            return
+        new_model = BaseModel()
+        new_model.save()
+        print(new_model.id)
+
+    def do_show(self, arg):
+        '''
+        prints string rep of instace based on
+        class name and id
+        This code assumes that the ID will exist
+        '''
+        args = HBNBCommand.parse_arg(arg)
+        if not args[0]:
+            print("** class name missing **")
+            return
+        if not args[1]:
+            print("** instance id missing **")
+        print(storage.all()[args[0] + '.' + args[1]])
+
+    @staticmethod
+    def parse_arg(arguments):
+        spaced_arguments = arguments.strip().split(' ')
+        return spaced_arguments
 
 
 if __name__ == '__main__':
