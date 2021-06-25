@@ -1,0 +1,18 @@
+{
+  "BaseModel.b3b68249-76e6-46ff-8b34-4aa329f3dc10": {
+    "id": "b3b68249-76e6-46ff-8b34-4aa329f3dc10",
+    "created_at": "2021-06-25T10:52:11.835926",
+    "updated_at": "2021-06-25T10:52:11.836236",
+    "name": "Holberton",
+    "my_number": 89,
+    "__class__": "BaseModel"
+  },
+  "BaseModel.20d7e225-6596-48b5-83cd-f8b6437b84c1": {
+    "id": "20d7e225-6596-48b5-83cd-f8b6437b84c1",
+    "created_at": "2021-06-25T11:01:01.674802",
+    "updated_at": "2021-06-25T11:01:01.674859",
+    "name": "Holberton",
+    "my_number": 89,
+    "__class__": "BaseModel"
+  }
+}
