@@ -2,7 +2,9 @@
 """
 Entry point of the command interpreter
 """
-import cmd, json, shlex
+import cmd
+import json
+import shlex
 from models import storage, class_names_list
 from models.base_model import BaseModel
 
@@ -122,10 +124,9 @@ class HBNBCommand(cmd.Cmd):
         if HBNBCommand.missing_args(parsed_args, 3, HBNBCommand.value_missing_msg):
             return
         setattr(storage.all()[parsed_args[0] + '.' + parsed_args[1]],
-            parsed_args[2],
-            parsed_args[3])
+                parsed_args[2],
+                parsed_args[3])
         storage.save()
-
 
     @staticmethod
     def parse_arg(args):
@@ -160,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
         except KeyError:
             print(HBNBCommand.no_instance_found_msg)
             return False
-    
+
     @staticmethod
     def missing_args(args, expected_index, msg):
         '''
