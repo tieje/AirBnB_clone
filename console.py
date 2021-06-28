@@ -2,12 +2,15 @@
 """
 Entry point of the command interpreter
 """
-import cmd
-import json
-import shlex
+import cmd, json, shlex
 from models import storage, class_names_list
+from models.amenity import Amenity
+from models.city import City
 from models.base_model import BaseModel
-
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -46,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             return
         if not HBNBCommand.class_exists(parsed_args):
             return
-        new_model = BaseModel()
+        new_model = eval(parsed_args[0])()
         new_model.save()
         print(new_model.id)
 
