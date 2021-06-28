@@ -2,19 +2,6 @@
 """
 Entry point of the command interpreter
 """
-<<<<<<< HEAD
-import cmd
-import json
-import shlex
-from models import storage
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.place import Place
-from models.amenity import Amenity
-from models.review import Review
-=======
 import cmd, json, shlex
 from models import storage, class_names_list
 from models.amenity import Amenity
@@ -24,7 +11,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
->>>>>>> 1872da5a359a65a73516c85cd355c1ed9826add0
 
 class HBNBCommand(cmd.Cmd):
     """
