@@ -114,4 +114,4 @@ class TestBase(unittest.TestCase):
             not the same instance.'''
         my_model_dict = self.my_model.to_dict()
         new_model = BaseModel(my_model_dict)
-        self.assertNotEqual(self.my_model, new_model)    
+        self.assertNotEqual(self.my_model, new_model)
