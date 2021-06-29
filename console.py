@@ -244,11 +244,6 @@ class HBNBCommand(cmd.Cmd):
             return True
         return False
 
-    @classmethod
-    def cls_all(cls):
-        hb.all(cls.__name__)
-
-
 if __name__ == '__main__':
     hb = HBNBCommand
     HBNBCommand().cmdloop()
