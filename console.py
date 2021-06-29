@@ -17,12 +17,12 @@ class HBNBCommand(cmd.Cmd):
     The entry point of the command interpreter
     """
     prompt = '(hbnb) '
-    cls_name_missing_msg = "** class name missing **"
-    inst_id_missing_msg = "** instance id missing **"
-    class_dne_msg = "** class doesn't exist **"
-    no_instance_found_msg = "** no instance found **"
-    attribute_missing_msg = "** attribute name missing **"
-    value_missing_msg = "** value missing **"
+    cls_miss_msg = "** class name missing **"
+    id_miss_msg = "** instance id missing **"
+    cls_dne_msg = "** class doesn't exist **"
+    no_inst_msg = "** no instance found **"
+    attr_miss_msg = "** attribute name missing **"
+    val_miss_msg = "** value missing **"
 
     def do_quit(self, arg):
         """quit command quits console"""
@@ -44,10 +44,10 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of BaseModel,
         saves it, and print the id
         '''
-        parsed_args = HBNBCommand.parse_arg(arg)
-        if HBNBCommand.missing_args(parsed_args, 0, HBNBCommand.cls_name_missing_msg):
+        parsed_args = hb.parse_arg(arg)
+        if hb.missing_args(parsed_args, 0, hb.cls_miss_msg):
             return
-        if not HBNBCommand.class_exists(parsed_args):
+        if not hb.class_exists(parsed_args):
             return
         new_model = eval(parsed_args[0])()
         new_model.save()
@@ -59,14 +59,14 @@ class HBNBCommand(cmd.Cmd):
         class name and id
         This code assumes that the ID will exist
         '''
-        parsed_args = HBNBCommand.parse_arg(arg)
-        if HBNBCommand.missing_args(parsed_args, 0, HBNBCommand.cls_name_missing_msg):
+        parsed_args = hb.parse_arg(arg)
+        if hb.missing_args(parsed_args, 0, hb.cls_miss_msg):
             return
-        if not HBNBCommand.class_exists(parsed_args):
+        if not hb.class_exists(parsed_args):
             return
-        if HBNBCommand.missing_args(parsed_args, 1, HBNBCommand.inst_id_missing_msg):
+        if hb.missing_args(parsed_args, 1, hb.id_miss_msg):
             return
-        print_this = HBNBCommand.json_class_id_exists(parsed_args)
+        print_this = hb.json_class_id_exists(parsed_args)
         if print_this:
             print(print_this)
 
@@ -75,14 +75,14 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on class name
         and id
         '''
-        parsed_args = HBNBCommand.parse_arg(arg)
-        if HBNBCommand.missing_args(parsed_args, 0, HBNBCommand.cls_name_missing_msg):
+        parsed_args = hb.parse_arg(arg)
+        if hb.missing_args(parsed_args, 0, hb.cls_miss_msg):
             return
-        if not HBNBCommand.class_exists(parsed_args):
+        if not hb.class_exists(parsed_args):
             return
-        if HBNBCommand.missing_args(parsed_args, 1, HBNBCommand.inst_id_missing_msg):
+        if hb.missing_args(parsed_args, 1, hb.id_miss_msg):
             return
-        destroy_this = HBNBCommand.json_class_id_exists(parsed_args)
+        destroy_this = hb.json_class_id_exists(parsed_args)
         if destroy_this:
             obj = parsed_args[0] + '.' + parsed_args[1]
             del storage.all()[obj]
@@ -92,14 +92,14 @@ class HBNBCommand(cmd.Cmd):
         '''
         prints all string reps of all instances
         '''
-        parsed_args = HBNBCommand.parse_arg(arg)
-        if parsed_args == [''] or parsed_args == [] or parsed_args == None:
+        parsed_args = hb.parse_arg(arg)
+        if parsed_args == ['']:
             print_list = []
             for key in storage.all():
                 print_list.append(str(storage.all()[key]))
             print(print_list)
             return
-        if not HBNBCommand.class_exists(parsed_args):
+        if not hb.class_exists(parsed_args):
             return
         print_list = []
         for key in storage.all():
@@ -113,20 +113,21 @@ class HBNBCommand(cmd.Cmd):
         class name and id by adding or
         updating attribute
         '''
-        parsed_args = HBNBCommand.parse_arg(arg)
-        if HBNBCommand.missing_args(parsed_args, 0, HBNBCommand.cls_name_missing_msg):
+        parsed_args = hb.parse_arg(arg)
+        if hb.missing_args(parsed_args, 0, hb.cls_miss_msg):
             return
-        if not HBNBCommand.class_exists(parsed_args):
+        if not hb.class_exists(parsed_args):
             return
-        if HBNBCommand.missing_args(parsed_args, 1, HBNBCommand.inst_id_missing_msg):
+        if hb.missing_args(parsed_args, 1, hb.id_miss_msg):
             return
-        if not HBNBCommand.json_class_id_exists(parsed_args):
+        if not hb.json_class_id_exists(parsed_args):
             return
-        if HBNBCommand.missing_args(parsed_args, 2, HBNBCommand.attribute_missing_msg):
+        if hb.missing_args(parsed_args, 2, hb.attr_miss_msg):
             return
-        if HBNBCommand.missing_args(parsed_args, 3, HBNBCommand.value_missing_msg):
+        if hb.missing_args(parsed_args, 3, hb.val_miss_msg):
             return
-        setattr(storage.all()[parsed_args[0] + '.' + parsed_args[1]],
+        setattr(storage.all()[
+                parsed_args[0] + '.' + parsed_args[1]],
                 parsed_args[2],
                 parsed_args[3])
         storage.save()
@@ -150,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
         '''
         if args[0] in class_names_list:
             return True
-        print(HBNBCommand.class_dne_msg)
+        print(hb.cls_dne_msg)
         return False
 
     @staticmethod
@@ -162,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
             instance_found = storage.all()[args[0] + '.' + args[1]]
             return instance_found
         except KeyError:
-            print(HBNBCommand.no_instance_found_msg)
+            print(hb.no_inst_msg)
             return False
 
     @staticmethod
@@ -180,4 +181,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
+    hb = HBNBCommand
     HBNBCommand().cmdloop()
