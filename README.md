@@ -40,4 +40,12 @@ The console can perform the following commands:
 -  `update <class> <id> <attribute> <value>`
     - Updates the instance with the specified attribute and value. The attribute and the value are not restricted in terms of what they can be.
 
+The commands above can also be invoked with the following input:
+
+- `<class>.create()`
+- `<class>.show(<id>)`
+- `<class>.destroy(<id>)`
+- `<class>.all()`
+- `<class>.update(<id>, <attribute>, <value>)`
+
 Use `help <command>` for additional information on the commands above.

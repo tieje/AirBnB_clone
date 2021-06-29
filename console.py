@@ -56,6 +56,7 @@ class HBNBCommand(cmd.Cmd):
         self.one_for_all('User', arg)
 
     def one_for_all(self, cls, arg):
+        '''<class>.<command> invokes this function'''
         prop_list = [
             '.all()',
             '.count()',
