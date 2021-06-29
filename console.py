@@ -2,7 +2,9 @@
 """
 Entry point of the command interpreter
 """
-import cmd, json, shlex
+import cmd
+import json
+import shlex
 from models import storage, class_names_list
 from models.amenity import Amenity
 from models.city import City
@@ -11,6 +13,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -92,18 +95,18 @@ class HBNBCommand(cmd.Cmd):
         '''
         prints all string reps of all instances
         '''
-        parsed_args = hb.parse_arg(arg)
-        if parsed_args == ['']:
+        pa = hb.parse_arg(arg)
+        if pa == [''] or pa == [] or pa == None:
             print_list = []
             for key in storage.all():
                 print_list.append(str(storage.all()[key]))
             print(print_list)
             return
-        if not hb.class_exists(parsed_args):
+        if not hb.class_exists(pa):
             return
         print_list = []
         for key in storage.all():
-            if parsed_args[0] == key[:len(parsed_args[0])]:
+            if pa[0] == key[:len(pa[0])]:
                 print_list.append(str(storage.all()[key]))
         print(print_list)
 

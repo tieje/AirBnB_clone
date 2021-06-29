@@ -18,7 +18,8 @@ class BaseModel():
                     setattr(self, key, type(self))
                 elif key == 'created_at' or key == 'updated_at':
                     setattr(self, key,
-                            the_time.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                            the_time.strptime(value,
+                                              "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
                     setattr(self, key, value)
         else:
