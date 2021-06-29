@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
         prints all string reps of all instances
         '''
         pa = hb.parse_arg(arg)
-        if pa == [''] or pa == [] or pa == None:
+        if pa == [''] or pa == [] or pa is None:
             print_list = []
             for key in storage.all():
                 print_list.append(str(storage.all()[key]))
