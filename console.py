@@ -27,6 +27,56 @@ class HBNBCommand(cmd.Cmd):
     attr_miss_msg = "** attribute name missing **"
     val_miss_msg = "** value missing **"
 
+    def do_Amenity(self, arg):
+        '''catches Amenity.<command>'''
+        self.one_for_all('Amenity', arg)
+
+    def do_BaseModel(self, arg):
+        '''catches BaseModel.<command>'''
+        self.one_for_all('BaseModel', arg)
+
+    def do_City(self, arg):
+        '''catches City.<command>'''
+        self.one_for_all('City', arg)
+
+    def do_Place(self, arg):
+        '''catches Place.<command>'''
+        self.one_for_all('Place', arg)
+
+    def do_Review(self, arg):
+        '''catches Review.<command>'''
+        self.one_for_all('Review', arg)
+
+    def do_State(self, arg):
+        '''catches State.<command>'''
+        self.one_for_all('State', arg)
+
+    def do_User(self, arg):
+        '''catches User.<command>'''
+        self.one_for_all('User', arg)
+
+    def one_for_all(self, cls, arg):
+        prop_list = [
+            '.all()',
+            '.count()',
+            '.show(',
+            '.destroy(',
+            '.update('
+        ]
+        arg_copy = arg
+        for i in prop_list:
+            length = len(i)
+            if arg == i or i == arg[:length]:
+                func = getattr(self, 'do_' + i.strip('().'))
+                # cleaning input
+                no_prefix = arg_copy[length:]
+                split_list = no_prefix.split(',')
+                def stripSpace(x): return x.strip()
+                remove_Space = list(map(stripSpace, split_list))
+                join_arg = ' '.join(remove_Space)
+                final_arg = cls + ' ' + join_arg.strip('()')
+                return func(final_arg)
+
     def do_quit(self, arg):
         """quit command quits console"""
         quit()
@@ -110,6 +160,17 @@ class HBNBCommand(cmd.Cmd):
                 print_list.append(str(storage.all()[key]))
         print(print_list)
 
+    def do_count(self, arg):
+        '''prints number of class instances'''
+        pa = hb.parse_arg(arg)
+        if not hb.class_exists(pa):
+            return
+        counter = 0
+        for key in storage.all():
+            if pa[0] == key[:len(pa[0])]:
+                counter += 1
+        print(counter)
+
     def do_update(self, arg):
         '''
         Updates an instance based on
@@ -181,6 +242,10 @@ class HBNBCommand(cmd.Cmd):
             print(msg)
             return True
         return False
+
+    @classmethod
+    def cls_all(cls):
+        hb.all(cls.__name__)
 
 
 if __name__ == '__main__':
