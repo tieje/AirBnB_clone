@@ -39,3 +39,5 @@ The console can perform the following commands:
     - Shows all data for all instances of `<class>` in `file.json`.
 -  `update <class> <id> <attribute> <value>`
     - Updates the instance with the specified attribute and value. The attribute and the value are not restricted in terms of what they can be.
+
+Use `help <command>` for additional information on the commands above.
