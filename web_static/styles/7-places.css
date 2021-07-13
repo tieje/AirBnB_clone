@@ -1,0 +1,27 @@
+.places-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  margin: 20px;
+  font-size: 18px;
+}
+.places-title {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    background-color: aqua;
+}
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: auto;
+}
+.listings {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+  text-align: center;
+}

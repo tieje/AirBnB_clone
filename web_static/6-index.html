@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/4-common.css" rel="stylesheet" />
+    <link href="styles/6-filters.css" rel="stylesheet" />
+    <link href="styles/3-header.css" rel="stylesheet" />
+    <link href="styles/3-footer.css" rel="stylesheet" />
+    <link href="images/browser_icon.png" type="image/png" rel="shortcut icon" />
+  </head>
+  <body>
+    <header>
+      <img src="images/hbnblogo.png"></a>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations" >
+                <p>
+                    <h3>
+                        States
+                    </h3>
+                    <h4>
+                        Connecticut, Hawaii...
+                    </h4>
+                </p>
+            </div>
+            <div class="amenities">
+                <p>
+                    <h3>
+                        Amenities
+                    </h3>
+                    <h4>
+                        Bunkers, ammunition...
+                    </h4>
+                </p>
+            </div>
+            <div class="button">
+                <button>Search</button>
+            </div>
+        </section>
+        <section class="dropdown-filter">
+            <div class="popover-locations">
+                <ul>
+                    <li>
+                        <h2>Connecticut:</h2>
+                        <ul>
+                            <li class="dropdown-item">Page 1</li>
+                            <li class="dropdown-item">Page 2</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>Hawaii:</h2>
+                        <ul>
+                            <li class="dropdown-item">Page 1</li>
+                            <li class="dropdown-item">Page 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="popover-amenities">
+                <ul>
+                    <li>
+                        <h2>Bunkers</h2>
+                        <ul>
+                            <li class="dropdown-item">Page 1</li>
+                            <li class="dropdown-item">Page 2</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>Ammunition</h2>
+                        <ul>
+                            <li class="dropdown-item">Page 1</li>
+                            <li class="dropdown-item">Page 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="emptydiv">
+            </div>
+        </section>
+    </div>
+    <footer>Holberton School</footer>
+    <script>
+        const locs = document.querySelector(".locations")
+        const popLocs = document.querySelector(".popover-locations")
+        const amen = document.querySelector(".amenities")
+        const popAmen = document.querySelector(".popover-amenities")
+
+        locs.addEventListener("mouseover", event => {popLocs.style.display = 'block'})
+        popLocs.addEventListener("mouseover", event => {popLocs.style.display = 'block'})
+        locs.addEventListener("mouseout", event => {popLocs.style.display = 'none'})
+        popLocs.addEventListener("mouseout", event => {popLocs.style.display = 'none'})
+        amen.addEventListener("mouseout", event => {
+            popAmen.style.display = 'none'
+            popLocs.style.display = 'none'
+            popLocs.style.visibility = 'visible'
+        })
+        popAmen.addEventListener("mouseout", event => {
+            popAmen.style.display = 'none'
+            popLocs.style.display = 'none'
+            popLocs.style.visibility = 'visible'
+        })
+        amen.addEventListener("mouseover", event => {
+            popAmen.style.display = 'block'
+            popLocs.style.display = 'block'
+            popLocs.style.visibility = 'hidden'
+        })
+        popAmen.addEventListener("mouseover", event => {
+            popAmen.style.display = 'block'
+            popLocs.style.display = 'block'
+            popLocs.style.visibility = 'hidden'
+        })
+    </script>
+  </body>
+</html>
